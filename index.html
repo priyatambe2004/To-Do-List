@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>My To-Do List</h1>
+      <p class="hint">Add tasks, tick them off, and delete what you don't need.</p>
+    </header>
+
+    <!-- Add task -->
+    <form id="task-form" class="add-form" novalidate>
+      <label for="task-input" class="sr-only">New task</label>
+      <input id="task-input" type="text" maxlength="80" autocomplete="off" placeholder="What do you need to do?">
+      <button type="submit" class="primary">Add task</button>
+    </form>
+    <p id="error" class="error" role="alert"></p>
+
+    <!-- Stats -->
+    <section class="stats" aria-label="Task summary">
+      <div class="stat"><strong id="count-total">0</strong><span>Total</span></div>
+      <div class="stat"><strong id="count-active">0</strong><span>To do</span></div>
+      <div class="stat"><strong id="count-done">0</strong><span>Done</span></div>
+    </section>
+    <div class="progress" role="progressbar" aria-label="Completed tasks" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters" id="filters" role="group" aria-label="Filter tasks">
+      <button type="button" class="filter active" data-filter="all">All</button>
+      <button type="button" class="filter" data-filter="active">To do</button>
+      <button type="button" class="filter" data-filter="done">Done</button>
+      <button type="button" id="clear-done" class="link-btn">Clear completed</button>
+    </div>
+
+    <!-- Task list: ONE click listener on this list handles every delete button -->
+    <ul id="task-list" class="task-list" aria-label="Tasks"></ul>
+    <p id="empty" class="empty"></p>
+
+    <p id="toast" class="toast" role="status" hidden>
+      <span id="toast-text"></span>
+      <button type="button" id="undo" class="undo">Undo</button>
+    </p>
+
+    <p class="note">Tasks are kept in memory only, so they reset when you refresh the page.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
